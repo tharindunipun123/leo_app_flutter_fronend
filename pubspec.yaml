@@ -39,6 +39,9 @@ dependencies:
   http: ^1.2.1
   flutter_screenutil: ^5.9.3
   google_fonts: ^6.2.1
+  country_picker: ^2.0.26
+  riverpod: ^2.5.1
+  flutter_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:

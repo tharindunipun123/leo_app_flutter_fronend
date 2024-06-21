@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:leo_final/pages/otp_generate_page.dart';
+import 'package:leo_final/pages/log%20in%20page/log_in_page.dart';
+import 'package:leo_final/pages/welcome%20page/welcome_page.dart';
 import 'ChatsTab.dart';
 import 'ChatScreen.dart';
 import 'LoginScreen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const OtpGeneratePage(),
+        home: const LoginPage(),
         // initialRoute: '/home',
         // onGenerateRoute: (settings) {
         //   switch (settings.name) {

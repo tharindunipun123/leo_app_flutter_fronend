@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OtpGeneratePage extends StatefulWidget{
-  const OtpGeneratePage({super.key});
+class WelcomePage extends StatefulWidget{
+  const WelcomePage({super.key});
 
   @override
-  State<OtpGeneratePage> createState() => _OtpGeneratePageState();
+  State<WelcomePage> createState() => _OtpGeneratePageState();
 }
 
-class _OtpGeneratePageState extends State<OtpGeneratePage> {
+class _OtpGeneratePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

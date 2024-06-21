@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:leo_final/pages/otp_generate_page.dart';
 import 'ChatsTab.dart';
 import 'ChatScreen.dart';
 import 'LoginScreen.dart';
@@ -12,34 +14,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ScreenUtilInit(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const OtpGeneratePage(),
+        // initialRoute: '/home',
+        // onGenerateRoute: (settings) {
+        //   switch (settings.name) {
+        //     case '/login':
+        //       return MaterialPageRoute(builder: (_) => const LoginScreen());
+        //     case '/home':
+        //       return MaterialPageRoute(builder: (_) => const MyHomePage());
+        //     case '/chat':
+        //       if (settings.arguments is Map<String, String>) {
+        //         final args = settings.arguments as Map<String, String>;
+        //         return MaterialPageRoute(
+        //           builder: (_) => ChatScreen(
+        //             chatTitle: args['chatTitle']!,
+        //             imageUrl: args['imageUrl']!,
+        //           ),
+        //         );
+        //       }
+        //       return _errorRoute();
+        //     default:
+        //       return _errorRoute();
+        //   }
+        // },
       ),
-      initialRoute: '/login',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/login':
-            return MaterialPageRoute(builder: (_) => const LoginScreen());
-          case '/home':
-            return MaterialPageRoute(builder: (_) => const MyHomePage());
-          case '/chat':
-            if (settings.arguments is Map<String, String>) {
-              final args = settings.arguments as Map<String, String>;
-              return MaterialPageRoute(
-                builder: (_) => ChatScreen(
-                  chatTitle: args['chatTitle']!,
-                  imageUrl: args['imageUrl']!,
-                ),
-              );
-            }
-            return _errorRoute();
-          default:
-            return _errorRoute();
-        }
-      },
     );
   }
 

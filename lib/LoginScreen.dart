@@ -15,12 +15,13 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     final username = _usernameController.text;
     final password = _passwordController.text;
-    final user = await ApiService.login(username, password);
-    if (user != null) {
-      Navigator.pushReplacementNamed(context, '/home', arguments: user);
-    } else {
+    // final user = await ApiService.login(username, password);
+    // if (user != null) {
+    //   Navigator.pushReplacementNamed(context, '/home', arguments: user);
+    // } else {
       // Handle login error
-    }
+      Navigator.pushNamedAndRemoveUntil(context, '/home' , (route) => false);
+  //  }
   }
 
   @override

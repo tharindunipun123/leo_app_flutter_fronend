@@ -91,10 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.blue.withOpacity(0.8),
-          showSelectedLabels: false,
+          fixedColor: Colors.grey,
           elevation: 1,
-          currentIndex: 1,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: 0,
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
           items: [
             BottomNavigationBarItem(
               activeIcon: const Icon(Icons.chat,

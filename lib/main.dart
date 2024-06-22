@@ -4,11 +4,18 @@ import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.da
 import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 import 'package:leo_final/pages/log%20in%20page/log_in_page.dart';
 import 'package:leo_final/pages/welcome%20page/welcome_page.dart';
+import 'package:leo_final/zego%20files/initial.dart';
+import 'package:leo_final/zego%20files/login.dart';
+import 'package:zego_zimkit/zego_zimkit.dart';
 import 'ChatsTab.dart';
 import 'ChatScreen.dart';
 import 'LoginScreen.dart';
 
 void main() {
+  ZIMKit().init(
+      appID: Initial.id,
+      appSign: Initial.signIn,
+  );
   runApp(const MyApp());
 }
 
@@ -24,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const WelcomePage(),
+        home: const Login(),
         // initialRoute: '/home',
         // onGenerateRoute: (settings) {
         //   switch (settings.name) {

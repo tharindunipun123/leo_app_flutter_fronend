@@ -10,21 +10,30 @@ class OTPVerificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff059FDA),
-        title: const Text('Verify Phone Number'),
+        title: const Text('Verify Phone Number',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Enter the 6-digit code sent to your phone',
-              style: TextStyle(fontSize: 18),
+            Text(
+              'Enter the 6-digit code',
+              style: TextStyle(fontSize: 19,
+                height: 1.9.h,
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.black26)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.grey)),
                 hintText: '6987',
                 labelText: 'OTP',
                 border: OutlineInputBorder(

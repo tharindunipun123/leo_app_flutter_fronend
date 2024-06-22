@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zego_zimkit/zego_zimkit.dart';
 
 import '../../ChatsTab.dart';
@@ -43,7 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
           backgroundColor: const Color(0xff059FDA),
-          title: const Text('LEO-CHAT', style: TextStyle(color: Colors.white)),
+          title: Text('LEO-CHAT', style: TextStyle(color: Colors.white,
+            fontWeight:FontWeight.w500,
+            height: 1.9.h,
+          )),
           bottom: const TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: Colors.white,
@@ -61,32 +65,31 @@ class _MyHomePageState extends State<MyHomePage> {
             labelColor: Colors.white,
           ),
         ),
-        // body: const TabBarView(
-        //   children: [
-        //
-        //     Center(child: Text('start chat')),
-        //    // ChatsTab(),
-        //     Center(child: Text('Status feature is coming soon')),
-        //     Center(child: Text('Call feature is coming soon')),
-        //   ],
-          body: ZIMKitConversationListView(
-            onPressed: (context , conversation , defaultAction){
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => ZIMKitMessageListPage(
+        body:  TabBarView(
+          children: [
+            ZIMKitConversationListView(
+              onPressed: (context , conversation , defaultAction){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ZIMKitMessageListPage(
                   conversationID: conversation.id,
                   conversationType: conversation.type,
-                appBarActions: [
-                  IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.call)
-                  ),IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.video_call)
-                  ),
-                ],
-              ),
-              ));
-            },
-          ),
+                  appBarActions: [
+                    IconButton(
+                        onPressed: (){},
+                        icon: const Icon(Icons.call)
+                    ),IconButton(
+                        onPressed: (){},
+                        icon: const Icon(Icons.video_call)
+                    ),
+                  ],
+                ),
+                ));
+              },
+            ),
+           // ChatsTab(),
+            const Center(child: Text('Status feature is coming soon')),
+            const Center(child: Text('Call feature is coming soon')),
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBar(
           fixedColor: Colors.blue.withOpacity(0.8),
           showSelectedLabels: false,

@@ -40,7 +40,12 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff059FDA),
-        title: const Text('Profile Setup',),
+        title: const Center(
+            child: Text('Profile Setup',
+              style: TextStyle(
+                fontWeight: FontWeight.w500
+              ),
+            )),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -51,7 +56,11 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
               const Center(
                 child: Text(
                   'Set up your profile',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(
+                    fontSize: 19,
+                    color: Colors.black,
+                    height: 1.8,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -64,10 +73,10 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
                         ? FileImage(File(_imageFile!.path))
                         : const AssetImage('assets/placeholder.png') as ImageProvider,
                     child: _imageFile == null
-                        ? const Icon(
+                        ?  Icon(
                       Icons.camera_alt,
                       size: 50,
-                      color: Colors.white,
+                      color: Colors.blue.withOpacity(0.5),
                     )
                         : null,
                   ),
@@ -77,6 +86,8 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.black26)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.grey)),
                   contentPadding: EdgeInsets.symmetric(vertical: 2.h,horizontal: 8.w),
                   labelText: 'Name',
                   border: OutlineInputBorder(
@@ -91,21 +102,26 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
               TextField(
                 controller: _aboutController,
                 decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.black26)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.w),borderSide: const BorderSide(color: Colors.grey)),
                   contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                   labelText: 'About',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.w),
                   ),
                 ),
-                maxLines: 3,
+                maxLines: 1,
               ),
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff059FDA),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.w),
+                    ),
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
+                      horizontal: 40,
                       vertical: 15,
                     ),
                   ),
@@ -113,7 +129,7 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
                   child: const Text(
                     'Save',
                     style: TextStyle(
-                        fontSize: 16,
+                      fontSize: 16,
                       color: Colors.white,
                     ),
                   ),

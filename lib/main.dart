@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.dart';
+import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 import 'package:leo_final/pages/log%20in%20page/log_in_page.dart';
 import 'package:leo_final/pages/welcome%20page/welcome_page.dart';
 import 'ChatsTab.dart';
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const LoginPage(),
+        home: const WelcomePage(),
         // initialRoute: '/home',
         // onGenerateRoute: (settings) {
         //   switch (settings.name) {
@@ -60,63 +62,5 @@ class MyApp extends StatelessWidget {
         ),
       );
     });
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            const Icon(Icons.search, color: Colors.white),
-            PopupMenuButton(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              itemBuilder: (context) {
-                return [
-                  const PopupMenuItem(child: Text('New Group')),
-                  const PopupMenuItem(child: Text('New Broadcast')),
-                  const PopupMenuItem(child: Text('Linked Devices')),
-                  const PopupMenuItem(child: Text('Starred Messages')),
-                  const PopupMenuItem(child: Text('Settings')),
-                ];
-              },
-            ),
-          ],
-          backgroundColor: const Color(0xff059FDA),
-          title: const Text('LEO-CHAT', style: TextStyle(color: Colors.white)),
-          bottom: const TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicatorColor: Colors.white,
-            tabs: [
-              Tab(
-                child: Text('CHATS', style: TextStyle(color: Colors.white)),
-              ),
-              Tab(
-                child: Text('STATUS', style: TextStyle(color: Colors.white)),
-              ),
-              Tab(
-                child: Text('CALLS', style: TextStyle(color: Colors.white)),
-              ),
-            ],
-            labelColor: Colors.white,
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            ChatsTab(),
-            Center(child: Text('Status feature is coming soon')),
-            Center(child: Text('Call feature is coming soon')),
-          ],
-        ),
-      ),
-    );
   }
 }

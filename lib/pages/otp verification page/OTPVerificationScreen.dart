@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   const OTPVerificationScreen({Key? key}) : super(key: key);
@@ -29,6 +30,9 @@ class OTPVerificationScreen extends StatelessWidget {
                 ),
               ),
               maxLength: 6,
+              onChanged: (otpCode){
+                //pass wena otp code ekata user dena otp code eka equal nam verify wenna, userId eka pass krnna
+              },
             ),
             const SizedBox(height: 20),
             Center(
@@ -42,7 +46,8 @@ class OTPVerificationScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Simulate OTP verification success
-                  Navigator.pushReplacementNamed(context, '/profile-setup');
+                 // Navigator.pushReplacementNamed(context, '/profile-setup');
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> const UserProfileSetupScreen()), (route) => false);
                 },
                 child: const Text(
                   'Verify',

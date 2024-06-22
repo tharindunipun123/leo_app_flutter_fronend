@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../log in page/log_in_page.dart';
+
 class WelcomePage extends StatefulWidget{
   const WelcomePage({super.key});
 
@@ -64,7 +66,9 @@ class _OtpGeneratePageState extends State<WelcomePage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width -100,
                 child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const LoginPage()), (route) => false);
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 6.h),
                       splashFactory: NoSplash.splashFactory,

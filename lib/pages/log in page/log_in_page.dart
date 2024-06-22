@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 
 import 'custom_textfield.dart';
 
@@ -40,6 +41,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         "The phone number you entered is too long for the country: $countryName",
       );
     }
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OTPVerificationScreen()));
 
     // ref.read(authControllerProvider).sendSmsCode(
     //   context: context,

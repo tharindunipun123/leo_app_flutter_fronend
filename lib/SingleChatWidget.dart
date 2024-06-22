@@ -19,14 +19,15 @@ class SingleChatWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/chat',
-          arguments: {
-            'chatTitle': chatTitle,
-            'imageUrl': imageUrl,
-          },
-        );
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => ChatScreen(chatTitle: chatTitle, imageUrl: imageUrl)));
+        // Navigator.pushNamed(
+        //   context,
+        //   '/chat',
+        //   arguments: {
+        //     'chatTitle': chatTitle,
+        //     'imageUrl': imageUrl,
+        //   },
+        // );
       },
       child: Row(
         children: [

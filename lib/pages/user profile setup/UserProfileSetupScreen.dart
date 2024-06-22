@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+
+import '../home page/home_page.dart';
+
 class UserProfileSetupScreen extends StatefulWidget {
   const UserProfileSetupScreen({Key? key}) : super(key: key);
 
@@ -23,8 +26,9 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
   }
 
   void _saveProfile() {
+    //if save button clicked , profile photo, userName and User Id send to backEnd   response - userName, pro pic, userId
     // Save profile info and navigate to home
-    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const MyHomePage()), (route) => false);
   }
 
   @override
@@ -73,6 +77,9 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (userName){
+                //store and send to backends if clicking save button
+              },
             ),
             const SizedBox(height: 20),
             TextField(

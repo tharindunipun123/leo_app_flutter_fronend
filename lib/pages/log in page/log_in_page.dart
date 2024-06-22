@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 
 import 'custom_textfield.dart';
@@ -199,7 +200,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ElevatedButton(
         onPressed: sendCode,
-        child: Text('NEXT'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 36, 160, 237),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.w)),
+        ),
+        child: const Text('NEXT',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }
@@ -217,7 +227,7 @@ showAlertDialog({
         content: Text(
           message,
           style: const TextStyle(
-            color: Colors.grey,
+            color: Colors.black38,
             fontSize: 15,
           ),
         ),
@@ -228,7 +238,7 @@ showAlertDialog({
             child: Text(
               btnText ?? "OK",
               style: const TextStyle(
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ),

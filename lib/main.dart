@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Login(),
+        home: const WelcomePage(),
         // initialRoute: '/home',
         // onGenerateRoute: (settings) {
         //   switch (settings.name) {

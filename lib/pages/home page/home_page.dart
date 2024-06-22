@@ -4,8 +4,14 @@ import 'package:zego_zimkit/zego_zimkit.dart';
 
 import '../../ChatsTab.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}); 
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class MyHomePage extends StatelessWidget {
               ),
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem(child: Text('New chat'),
+                  PopupMenuItem(child: const Text('New chat'),
                     onTap: (){
                      ZIMKit().showDefaultNewPeerChatDialog(context);
                     },
@@ -85,9 +91,10 @@ class MyHomePage extends StatelessWidget {
           fixedColor: Colors.blue.withOpacity(0.8),
           showSelectedLabels: false,
           elevation: 1,
+          currentIndex: 1,
           items: [
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.chat,
+              activeIcon: const Icon(Icons.chat,
                 color: Colors.blue,
               ),
               icon: Icon(Icons.chat,
@@ -95,7 +102,7 @@ class MyHomePage extends StatelessWidget {
               ),
               label: 'chat',
             ),BottomNavigationBarItem(
-              activeIcon: Icon(Icons.group,
+              activeIcon: const Icon(Icons.group,
                 color: Colors.blue,
               ),
               icon: Icon(Icons.group,
@@ -103,7 +110,7 @@ class MyHomePage extends StatelessWidget {
               ),
               label: 'group',
             ),BottomNavigationBarItem(
-              activeIcon: Icon(Icons.sports_basketball,
+              activeIcon: const Icon(Icons.sports_basketball,
                 color: Colors.blue,
               ),
               icon: Icon(Icons.sports_basketball,
@@ -111,7 +118,7 @@ class MyHomePage extends StatelessWidget {
               ),
               label: 'games',
             ),BottomNavigationBarItem(
-              activeIcon:  Icon(Icons.person,
+              activeIcon: const Icon(Icons.person,
                 color: Colors.blue,
               ),
               icon: Icon(Icons.person,

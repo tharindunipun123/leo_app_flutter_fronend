@@ -63,6 +63,7 @@ class _OtpGeneratePageState extends State<WelcomePage> {
                  ),
                 ),
               ),
+              SizedBox(height: 32.h,),
               SizedBox(
                 width: MediaQuery.of(context).size.width -100,
                 child: ElevatedButton(
@@ -73,7 +74,7 @@ class _OtpGeneratePageState extends State<WelcomePage> {
                       padding: EdgeInsets.symmetric(vertical: 6.h),
                       splashFactory: NoSplash.splashFactory,
                       elevation: 0,
-                      backgroundColor: Colors.black,
+                      backgroundColor: Color.fromARGB(255, 36, 160, 237),
                       foregroundColor: Colors.white,
                       shadowColor: Colors.transparent,
                       shape: RoundedRectangleBorder(

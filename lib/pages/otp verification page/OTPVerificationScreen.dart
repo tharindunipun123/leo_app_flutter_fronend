@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
@@ -24,10 +25,12 @@ class OTPVerificationScreen extends StatelessWidget {
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                hintText: '6987',
                 labelText: 'OTP',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h)
               ),
               maxLength: 6,
               onChanged: (otpCode){
@@ -40,9 +43,12 @@ class OTPVerificationScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff059FDA),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 50,
-                    vertical: 15,
+                    horizontal: 40,
+                    vertical: 12,
                   ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.w),
+                  )
                 ),
                 onPressed: () {
                   // Simulate OTP verification success
@@ -51,7 +57,9 @@ class OTPVerificationScreen extends StatelessWidget {
                 },
                 child: const Text(
                   'Verify',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

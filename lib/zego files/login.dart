@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leo_final/pages/home%20page/home_page.dart';
 import 'package:zego_zimkit/zego_zimkit.dart';
 
+
+//this page didn't used
 class Login extends StatefulWidget{
   const Login({super.key});
 
@@ -55,8 +57,8 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                       onPressed: () async{
-                        await ZIMKit().connectUser(id: userId!, name: userName!);
-                        Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder:(_) => const MyHomePage()), (route) => false);
+                        await ZIMKit().connectUser(id: '1234', name: 'leo');
+                        Navigator.pushAndRemoveUntil(context ,MaterialPageRoute(builder:(_) => const MyHomePage()), (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -65,7 +67,7 @@ class _LoginState extends State<Login> {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                     ),
-                      child: Text('Login',
+                      child: const Text('Login',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

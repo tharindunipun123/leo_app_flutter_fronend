@@ -77,8 +77,7 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
                       Icons.camera_alt,
                       size: 50,
                       color: Colors.blue.withOpacity(0.5),
-                    )
-                        : null,
+                    ) : null,
                   ),
                 ),
               ),

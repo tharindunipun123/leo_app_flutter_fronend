@@ -43,6 +43,7 @@ dependencies:
   riverpod: ^2.5.1
   flutter_riverpod: ^2.5.1
   zego_zimkit: ^1.18.7
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:

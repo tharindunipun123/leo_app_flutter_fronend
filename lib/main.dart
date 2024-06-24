@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:leo_final/pages/home%20page/bloc/home_page_bloc.dart';
 import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.dart';
 import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 import 'package:leo_final/pages/log%20in%20page/log_in_page.dart';
 import 'package:leo_final/pages/welcome%20page/welcome_page.dart';
 import 'package:leo_final/zego%20files/initial.dart';
-import 'package:leo_final/zego%20files/login.dart';
 import 'package:zego_zimkit/zego_zimkit.dart';
 import 'ChatsTab.dart';
 import 'ChatScreen.dart';
@@ -24,36 +25,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (context) => HomePageBloc(),
+      child: ScreenUtilInit(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const WelcomePage(),
+          // initialRoute: '/home',
+          // onGenerateRoute: (settings) {
+          //   switch (settings.name) {
+          //     case '/login':
+          //       return MaterialPageRoute(builder: (_) => const LoginScreen());
+          //     case '/home':
+          //       return MaterialPageRoute(builder: (_) => const MyHomePage());
+          //     case '/chat':
+          //       if (settings.arguments is Map<String, String>) {
+          //         final args = settings.arguments as Map<String, String>;
+          //         return MaterialPageRoute(
+          //           builder: (_) => ChatScreen(
+          //             chatTitle: args['chatTitle']!,
+          //             imageUrl: args['imageUrl']!,
+          //           ),
+          //         );
+          //       }
+          //       return _errorRoute();
+          //     default:
+          //       return _errorRoute();
+          //   }
+          // },
         ),
-        home: const WelcomePage(),
-        // initialRoute: '/home',
-        // onGenerateRoute: (settings) {
-        //   switch (settings.name) {
-        //     case '/login':
-        //       return MaterialPageRoute(builder: (_) => const LoginScreen());
-        //     case '/home':
-        //       return MaterialPageRoute(builder: (_) => const MyHomePage());
-        //     case '/chat':
-        //       if (settings.arguments is Map<String, String>) {
-        //         final args = settings.arguments as Map<String, String>;
-        //         return MaterialPageRoute(
-        //           builder: (_) => ChatScreen(
-        //             chatTitle: args['chatTitle']!,
-        //             imageUrl: args['imageUrl']!,
-        //           ),
-        //         );
-        //       }
-        //       return _errorRoute();
-        //     default:
-        //       return _errorRoute();
-        //   }
-        // },
       ),
     );
   }

@@ -1,9 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leo_final/pages/user%20profile%20setup/UserProfileSetupScreen.dart';
+import 'package:http/http.dart' as http;
 
-class OTPVerificationScreen extends StatelessWidget {
-  const OTPVerificationScreen({Key? key}) : super(key: key);
+class OTPVerificationScreen extends StatefulWidget {
+  const OTPVerificationScreen({super.key, required this.phoneNumber});
+
+  final String phoneNumber;
+
+  @override
+  State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
+}
+
+class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  String sixDigitOtpCode = '';
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +55,7 @@ class OTPVerificationScreen extends StatelessWidget {
               ),
               maxLength: 6,
               onChanged: (otpCode){
+                sixDigitOtpCode = otpCode;
                 //pass wena otp code ekata user dena otp code eka equal nam verify wenna, userId eka pass krnna
               },
             ),
@@ -59,11 +72,7 @@ class OTPVerificationScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.w),
                   )
                 ),
-                onPressed: () {
-                  // Simulate OTP verification success
-                 // Navigator.pushReplacementNamed(context, '/profile-setup');
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> const UserProfileSetupScreen()), (route) => false);
-                },
+                onPressed: verifyOtp,
                 child: const Text(
                   'Verify',
                   style: TextStyle(fontSize: 16,
@@ -76,5 +85,22 @@ class OTPVerificationScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  verifyOtp() async {
+    Map<String , String> requestData = {
+        "mobileNumber": widget.phoneNumber,
+        "otp": sixDigitOtpCode,
+    };
+
+    var jsonData = json.encode(requestData);
+
+    Uri url = Uri.parse('http://16.16.27.1:8080/api/v1/verifyOtp');
+  //  final response = await http.post(url, body: requestData);
+
+ //   print(response.body);
+
+
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> const UserProfileSetupScreen()), (route) => false);
   }
 }

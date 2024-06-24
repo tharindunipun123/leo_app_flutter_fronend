@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leo_final/pages/otp%20verification%20page/OTPVerificationScreen.dart';
 
 import 'custom_textfield.dart';
+import 'package:http/http.dart' as http;
 
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -19,7 +22,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
 
-  sendCode() {
+  sendCode() async {
     final phoneNumber = phoneNumberController.text;
     final countryName = countryNameController.text;
     final countryCode = countryCodeController.text;
@@ -29,13 +32,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         context: context,
         message: "Please enter your phone number",
       );
-    } else if (phoneNumber.length < 9) {
+    } else if (phoneNumber.length < 7) {
       return showAlertDialog(
         context: context,
         message:
         'The phone number you entered is too short for the country: $countryName\n\nInclude your area code if you haven\'t',
       );
-    } else if (phoneNumber.length > 10) {
+    } else if (phoneNumber.length > 12) {
       return showAlertDialog(
         context: context,
         message:
@@ -43,7 +46,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       );
     }
 
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OTPVerificationScreen()));
+    final phoneNumberWithCountryCode = '+$countryCode$phoneNumber';
+    Map<String, String> requestBodyData = {
+      "mobileNumber" : phoneNumberWithCountryCode,
+    };
+
+    print(phoneNumberWithCountryCode);
+
+    var jsonData = json.encode(requestBodyData);
+
+    // Uri url = Uri.parse('http://16.16.27.1:8080/api/v1/getOtp');
+    // final response = await http.post(url, body: jsonData);
+    //
+    // Map<String, String> jsonResponse = json.decode(response.body);
+    // print(jsonResponse);
+    // print('123');
+
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => OTPVerificationScreen(phoneNumber: phoneNumberWithCountryCode)));
 
     // ref.read(authControllerProvider).sendSmsCode(
     //   context: context,
@@ -58,7 +78,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       favorite: ['ET'],
       countryListTheme: CountryListThemeData(
         bottomSheetHeight: 600,
-        backgroundColor: Theme.of(context).backgroundColor,
+       // backgroundColor: Theme.of(context).backgroundColor,
         flagSize: 22,
         borderRadius: BorderRadius.circular(20),
         textStyle: const TextStyle(color: Colors.grey,),
@@ -71,7 +91,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           hintText: 'Search country by code or name',
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.grey!.withOpacity(.2),
+              color: Colors.grey.withOpacity(.2),
             ),
           ),
           focusedBorder: const UnderlineInputBorder(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:leo_final/pages/wallet/wallet_screen.dart';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart'; // Add this import
 
@@ -53,13 +54,15 @@ class MyApp extends StatelessWidget {
             create: (context) => HomePageBloc(),
             child: ScreenUtilInit(
               builder: (context, child) => MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Flutter Demo',
-                theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                ),
-                home: MyHomePage(userId: userId, about: about, name: name),
-              ),
+                  debugShowCheckedModeBanner: false,
+                  title: 'Flutter Demo',
+                  theme: ThemeData(
+                    primarySwatch: Colors.blue,
+                  ),
+                  home: MyHomePage(userId: userId, about: about, name: name),
+                  routes: {
+                    '/wallet': (context) => const WalletScreen(),
+                  }),
             ),
           );
         } else {

@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
   List<Map<String, String>> users = [];
   bool isLoading = true;
 
@@ -364,10 +365,6 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, state) => Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(
-                icon: const Icon(Icons.logout),
-                onPressed: () => _logout(context),
-              ),
               const Icon(Icons.search, color: Colors.white),
               PopupMenuButton(
                 color: Colors.white,
@@ -377,29 +374,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (context) {
                   return [
                     PopupMenuItem(
-                      child: const Text('Chat with id'),
+                      child: const Text('New chat'),
                       onTap: () {
                         ZIMKit().showDefaultNewPeerChatDialog(context);
                       },
                     ),
                     PopupMenuItem(
-                      child: const Text('New Chat'),
+                      child: const Text('Logout'),
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ContactsScreen(
-                                      userId: widget.userId,
-                                      Name: widget.name,
-                                    )));
+                        _logout(context);
                       },
                     ),
-                    PopupMenuItem(
-                      child: const Text('New Group'),
-                      onTap: () {
-                        _showCreateGroupModal(context);
-                      },
-                    ),
+                    const PopupMenuItem(child: Text('New Group')),
+                    // const PopupMenuItem(child: Text('New Broadcast')),
                     const PopupMenuItem(child: Text('Linked Devices')),
                     const PopupMenuItem(child: Text('Starred Messages')),
                     const PopupMenuItem(child: Text('Settings')),
@@ -414,38 +401,36 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.w500,
                   height: 1.9.h,
                 )),
-            bottom: state.index == 0
-                ? const TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.white,
-                    tabs: [
-                      Tab(
-                        child: Text('CHATS',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                      Tab(
-                        child: Text('STATUS',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                      Tab(
-                        child: Text('CALLS',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ],
-                    labelColor: Colors.white,
-                  )
-                : null,
+            bottom: const TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorColor: Colors.white,
+              tabs: [
+                Tab(
+                  child: Text('CHATS', style: TextStyle(color: Colors.white)),
+                ),
+                Tab(
+                  child: Text('STATUS', style: TextStyle(color: Colors.white)),
+                ),
+                Tab(
+                  child: Text('CALLS', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+              labelColor: Colors.white,
+            ),
           ),
-          body: buildBottomTabs(state.index),
+          body: buildBottomTabs(_currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             fixedColor: Colors.grey,
             elevation: 1,
             type: BottomNavigationBarType.fixed,
-            currentIndex: state.index!,
+            currentIndex: _currentIndex,
             showUnselectedLabels: true,
             showSelectedLabels: true,
             onTap: (index) {
-              context.read<HomePageBloc>().add(IndexEvent(index: index));
+              setState(() {
+                _currentIndex = index;
+                print(_currentIndex); // Update the current index
+              });
             },
             items: [
               BottomNavigationBarItem(

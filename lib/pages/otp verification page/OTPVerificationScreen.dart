@@ -54,25 +54,22 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.w),
-                    borderSide: const BorderSide(color: Colors.black26)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.w),
-                    borderSide: const BorderSide(color: Colors.grey)),
-                hintText: '6987',
-                labelText: 'OTP',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
-              ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.w),
+                      borderSide: const BorderSide(color: Colors.black26)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.w),
+                      borderSide: const BorderSide(color: Colors.grey)),
+                  hintText: '6987',
+                  labelText: 'OTP',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h)),
               maxLength: 6,
               onChanged: (otpCode) {
-                setState(() {
-                  sixDigitOtpCode = otpCode;
-                });
+                sixDigitOtpCode = otpCode;
               },
             ),
             const SizedBox(height: 20),
@@ -103,38 +100,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     );
   }
 
-  // Future<void> verifyOtp() async {
-  //   Map<String, String> requestData = {
-  //     "mobileNumber": widget.userId,
-  //     "otp": sixDigitOtpCode,
-  //   };
-
-  //   var jsonData = json.encode(requestData);
-
-  //   Uri url = Uri.parse('http://45.126.125.172:8080/api/v1/verifyOtp');
-  //   final response = await http.post(url,
-  //       headers: {"Content-Type": "application/json"}, body: jsonData);
-
-  //   if (response.statusCode == 200) {
-  //     // Assuming the response contains user data
-  //     Map<String, dynamic> jsonResponse = json.decode(response.body);
-  //     String userId = jsonResponse['userId'];
-
-  //     // Save user data in local storage
-  //     await saveUserData(jsonResponse);
-
-  //     // Navigate to the home page
-  //     Navigator.of(context).pushAndRemoveUntil(
-  //         MaterialPageRoute(builder: (_) => const UserProfileSetupScreen()),
-  //         (route) => false);
-  //   } else {
-  //     showAlertDialog(
-  //       context: context,
-  //       message: "Invalid OTP. Please try again.",
-  //     );
-  //   }
-  // }
-
   Future<void> verifyOtp() async {
     Map<String, String> requestData = {
       "mobileNumber": widget.mobileNumber,
@@ -152,56 +117,17 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
         "mobileNumber": widget.mobileNumber,
         "user_id": widget.userId
       };
-
       await saveUserData(user);
-      // Save user data
-      //   await saveUserData(user);
-      showAlertDialog(
-        context: context,
-        message: "Verification successfully",
-      );
+      // showAlertDialog(
+      //   context: context,
+      //   message: "Verification successfully",
+      // );
     } else {
       showAlertDialog(
         context: context,
         message: "Failed to verify OTP. Please try again.",
       );
     }
-
-    // if (response.statusCode == 200) {
-    //   // Check if response body is not null
-    //   if (response.body != null) {
-    //     // Check if the response is 'true'
-    //     print(response.body);
-    //     if (response.body == 'true') {
-    //       final user = {
-    //         "mobileNumber": widget.mobileNumber,
-    //         "user_id": widget.userId
-    //       };
-    //       // Save user data
-    //       //   await saveUserData(user);
-    //       showAlertDialog(
-    //         context: context,
-    //         message: "Verification successfully",
-    //       );
-    //     } else {
-    //       // Handle the case where the response is not as expected
-    //       showAlertDialog(
-    //         context: context,
-    //         message: "Failed to verify OTP. Please try again.",
-    //       );
-    //     }
-    //   } else {
-    //     showAlertDialog(
-    //       context: context,
-    //       message: "Response body is null. Please try again.",
-    //     );
-    //   }
-    // } else {
-    //   showAlertDialog(
-    //     context: context,
-    //     message: "Failed to verify OTP. Please try again.",
-    //   );
-    // }
   }
 
   Future<void> saveUserData(Map<String, dynamic> userData) async {
@@ -211,11 +137,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     print(res);
     print(userData);
 
-    // Navigator.of(context).pushAndRemoveUntil(
-    //   MaterialPageRoute(
-    //       builder: (_) => UserProfileSetupScreen(userId: widget.userId)),
-    //   (route) => false,
-    // );
     Navigator.of(context).push(
       MaterialPageRoute(
           builder: (_) => UserProfileSetupScreen(userId: widget.userId)),

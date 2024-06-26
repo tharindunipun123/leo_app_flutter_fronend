@@ -33,6 +33,11 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
 
   Future<void> _saveProfile() async {
     // Prepare the request body
+
+    if (_nameController.text.isEmpty || _aboutController.text.isEmpty) {
+      _showErrorDialog('Name and About fields cannot be empty');
+      return;
+    }
     var requestBody = {
       "userId": widget.userId,
       "name": _nameController.text,
@@ -107,6 +112,26 @@ class _UserProfileSetupScreenState extends State<UserProfileSetupScreen> {
     } catch (e) {
       print('Failed to save user data: $e');
     }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

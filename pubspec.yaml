@@ -46,6 +46,7 @@ dependencies:
   contacts_service: ^0.6.3
   permission_handler: ^11.3.1
   path_provider: ^2.0.9
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -69,10 +70,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  #   - images/a_dot_ham.jpeg
   assets:
     - assets/icons/chat.png
+    - assets/icons/
+    - assets/images/
+    - assets/images/balance.avif
+    - assets/images/balance.jpeg
     - assets/placeholder.png
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

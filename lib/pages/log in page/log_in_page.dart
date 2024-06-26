@@ -207,13 +207,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           ),
         ),
         centerTitle: true,
-        // actions: [
-        //  //  IconButton(
-        //  //    onPressed: () {},
-        //  // //   icon: Icons.more_vert,
-        //  //    icon: Icon(Icons.add),
-        //  //  ),
-        // ],
       ),
       body: Column(
         children: [

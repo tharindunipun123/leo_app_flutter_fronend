@@ -151,7 +151,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       builder: (context) {
         return AlertDialog(
           title: const Text("Success"),
-          content: const Text("OTP verification successful!"),
+          content: const Text("OTP send successful!"),
           actions: [
             TextButton(
               onPressed: () {

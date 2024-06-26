@@ -45,8 +45,8 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Text('User ID: ${userData['user_id']}'),
                   Text('Mobile Number: ${userData['mobileNumber']}'),
-                  Text('Mobile Number: ${userData['name']}'),
-                  Text('Mobile Number: ${userData['about']}'),
+                  Text('Name: ${userData['name']}'),
+                  Text('About: ${userData['about']}'),
                 ],
               )
             : const CircularProgressIndicator(), // Show a loading indicator while data is being loaded

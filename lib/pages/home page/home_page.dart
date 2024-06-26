@@ -13,6 +13,7 @@ import 'package:leo_final/zego%20files/initial.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:zego_zimkit/zego_zimkit.dart';
+import '../group/GroupMembers.dart';
 import '../log in page/log_in_page.dart';
 import 'bloc/home_page_state.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> users = [];
+  List<Map<String, String>> users = [];
   bool isLoading = true;
 
   @override
@@ -132,11 +133,17 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
       if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body) as List<dynamic>;
-        final List<String> contactsResponse = responseData
-            // Filter out users where userId == widget.userId
-            .map<String>((e) => e['contactName'] as String)
+        final List<dynamic> responseData =
+            jsonDecode(response.body) as List<dynamic>;
+
+        final List<Map<String, String>> contactsResponse = responseData
+            .where((e) => e['userId'].toString() != widget.userId)
+            .map<Map<String, String>>((e) => {
+                  'userId': e['userId'].toString(),
+                  'contactName': e['contactName'].toString(),
+                })
             .toList();
+
         setState(() {
           users = contactsResponse;
         });
@@ -164,7 +171,8 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       // Create a group with ZIMKit
       String? groupID = await ZIMKit().createGroup(groupName, ids);
-
+      print(groupID);
+      print(ids);
       setState(() {
         isLoading = false;
       });
@@ -179,6 +187,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 conversationType: ZIMConversationType.group,
               );
             },
+          ),
+        );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => GroupMembersPage(groupID: groupID),
           ),
         );
 
@@ -252,8 +267,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _showSelectUsersScreen(BuildContext context, List<String> users,
-      String groupName, String groupDescription) {
+  void _showSelectUsersScreen(
+      BuildContext context,
+      List<Map<String, String>> users,
+      String groupName,
+      String groupDescription) {
     List<String> selectedUsers = [];
 
     showDialog(
@@ -269,15 +287,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   shrinkWrap: true,
                   itemCount: users.length,
                   itemBuilder: (context, index) {
+                    final user = users[index];
                     return CheckboxListTile(
-                      title: Text(users[index]),
-                      value: selectedUsers.contains(users[index]),
+                      title: Text(user['contactName'] ?? ''),
+                      subtitle: Text(user['userId'] ?? ''),
+                      value: selectedUsers.contains(user['userId']),
                       onChanged: (bool? value) {
                         setState(() {
                           if (value != null && value) {
-                            selectedUsers.add(users[index]);
+                            selectedUsers.add(user['userId']!);
                           } else {
-                            selectedUsers.remove(users[index]);
+                            selectedUsers.remove(user['userId']!);
                           }
                         });
                       },
@@ -304,6 +324,33 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             );
           },
+        );
+      },
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout Confirmation'),
+          content: const Text('Are you sure you want to logout?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Logout'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _logout(context);
+              },
+            ),
+          ],
         );
       },
     );
